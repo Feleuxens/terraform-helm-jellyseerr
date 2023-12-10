@@ -1,0 +1,21 @@
+resources:
+  request:
+    cpu: ${cpu_request}
+    memory: ${memory_request}
+  limit:
+    memory: ${memory_limit}
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-dns01
+  hosts:
+    - host: jellyseerr.${domain}
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+    - secretName: jellyseerr-tls
+      hosts:
+        - jellyseerr.${domain}

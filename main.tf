@@ -1,23 +1,18 @@
-resource "helm_release" "" {
-  name = ""
+resource "helm_release" "jellyseerr" {
+  name = "jellyseerr"
 
-  repository       = ""
-  chart            = ""
-  version          = ""
+  repository       = "https://helm.feleuxens.de"
+  chart            = "jellyseerr"
+  version          = "0.1.0"
   create_namespace = true
-  namespace        = ""
+  namespace        = "jellyseerr"
 
   values = [
-    templatefile("${path.module}/helm-values/values.yaml", {
+    templatefile("${path.module}/helm-values/jellyseerr.yaml", {
+      domain : var.domain
       cpu_request : var.cpu_request,
       memory_request : var.memory_request,
       memory_limit : var.memory_limit
     })
   ]
-  set_sensitive {
-    name  = "secret"
-    value = value
-  }
-
-  # depends_on = []
 }

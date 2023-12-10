@@ -1,3 +1,7 @@
+variable "domain" {
+  type = string
+}
+
 variable "cpu_request" {
   type    = string
   default = "10m"
