@@ -3,7 +3,7 @@ resource "helm_release" "jellyseerr" {
 
   repository       = "https://helm.feleuxens.de"
   chart            = "jellyseerr"
-  version          = "0.1.0"
+  version          = "0.1.1"
   create_namespace = true
   namespace        = "jellyseerr"
 
